@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<title>Adventskalender</title>
+<style>
+
+.inter-<uniquifier> {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+body {
+text-align: center;
+margin: 10px ;
+padding: 0 ;
+font-family: Inter, monospace;
+	font-weight: 400;
+}
+section {
+margin: 7px ;
+}
+
+h1 {
+font-weight: 900;
+font-size: 22px
+}
+p{
+font-size: 18px
+}
+  .door {
+    cursor: pointer;
+    font-size: 18px;
+	text-decoration: none;
+	color: inherit;
+  }
+</style>
+</head>
+<body>
+  <h1> adventskalender </h1>
+  <main id="calendar"></main>
+
+<script>
+const main = document.getElementById("calendar");
+const zahlen = [
+  "eins","zwei","drei","vier","fünf","sechs","sieben","acht",
+  "neun","zehn","elf","zwölf","dreizehn","vierzehn","fünfzehn",
+  "sechzehn","siebzehn","achtzehn","neunzehn","zwanzig","einundzwanzig",
+  "zweiundzwanzig","dreiundzwanzig","vierundzwanzig"
+];
+
+const heute = new Date().getDate();
+
+
+for(let i=0; i<24; i++){
+  const tagNummer = i + 1;
+  const section = document.createElement("section");
+  section.id = "Tür_" + tagNummer;
+
+  const doorLink = document.createElement("a");
+  doorLink.className = "door";
+  doorLink.textContent = zahlen[i]; // ausgeschriebene Zahl
+  // Link auf das jeweilige Türchen
+  if (tagNummer <= heute) {
+	doorLink.href = "Tuerchen/tuerchen_" + zahlen[i] + "/tuerchen_" + zahlen[i] + ".html";
+	doorLink.target = "_blank"; // öffnet in neuem Fenster/Tab
+	doorLink.style.opacity = "1";
+}	else {
+	doorLink.style.opacity = "0.3";
+	doorLink.style.pointerEvents = "none";
+}
+
+  section.appendChild(doorLink);
+  main.appendChild(section);
+}
+
+
+	
+</script>
+</body>
+</html>
